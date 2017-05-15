@@ -1,4 +1,5 @@
 var React = require('react');
+var {Link, IndexLink} = require('react-router');
 
 var WeatherForm = React.createClass({
   onFormSubmit: function (e) {
@@ -16,8 +17,12 @@ var WeatherForm = React.createClass({
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
-          <div><input type="text" ref="location" placeholder="Enter city name"/></div>
-          <div><button>Get Weather</button></div>
+          <div>
+            <input type="text" ref="location" placeholder="Enter city name"/>
+          </div>
+          <div>
+            <button className="hollow button expanded">Get Weather</button>
+          </div>
         </form>
       </div>
     );
