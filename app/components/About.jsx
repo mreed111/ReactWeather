@@ -5,7 +5,7 @@ var {Link, IndexLink} = require('react-router');
 var About = (props) => {
   return (
     <div>
-      <h3 className="text-center">Weather application:</h3>
+      <h3 className="text-center page-title">Weather application:</h3>
       <p>  This is my React Weather application.  It will fetch the current temperature for a specified city in degrees Fahrenheit.</p>
       <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Get Weather</IndexLink>
       <p></p>

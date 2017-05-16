@@ -13,12 +13,12 @@ var WeatherForm = React.createClass({
     }
   },
   render: function () {
-    // http://api.openweathermap.org/data/2.5/find?q=London&units=imperial&appid=565db73cb4ececbed05f1f535cac4dbb
+    // 
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
           <div>
-            <input type="text" ref="location" placeholder="Enter city name"/>
+            <input type="search" ref="location" placeholder="Search weather by city"/>
           </div>
           <div>
             <button className="hollow button expanded">Get Weather</button>
