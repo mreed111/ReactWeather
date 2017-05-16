@@ -1,5 +1,7 @@
 var React = require('react');
 var PropTypes = require('prop-types');
+var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
 
 var ErrorModal = React.createClass({
   //
@@ -13,16 +15,11 @@ var ErrorModal = React.createClass({
     message: PropTypes.string.isRequired
   },
   componentDidMount: function () {
-    // create a new instance of the modal dialog
-    var modal = new Foundation.Reveal($('#error-modal'));
-    // display the dialog
-    modal.open();
-  },
-
-  render: function () {
-    //debugger;
     var {title, message} = this.props;
-    return (
+    // foundation makes changes to the DOM when it call modal.open();
+    // This will cause React to lose track of the dom state.
+    // moving the element creation here, outside the render method, fixes that.
+    var modalMarkup = (
       <div id="error-modal" className="tiny reveal text-center" 
        data-reveal="">
         <h4>{title}</h4>
@@ -30,6 +27,26 @@ var ErrorModal = React.createClass({
         <p>
           <button className="button hollow" data-close="">OK</button>
         </p>
+      </div>
+    );
+
+    // convert the jsx code to string
+    var $modal = $(ReactDOMServer.renderToString(modalMarkup));
+    // add the jsx into the DOM
+    $(ReactDOM.findDOMNode(this)).html($modal);
+    //debugger;
+    // create a new instance of the modal dialog
+    var modal = new Foundation.Reveal($('#error-modal'));
+    // display the dialog
+    modal.open();
+  },
+
+  render: function () {
+    
+    var {title, message} = this.props;
+    //debugger;
+    return (
+      <div>
       </div>
     );
   }
